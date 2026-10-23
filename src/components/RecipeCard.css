@@ -1,0 +1,9 @@
+.ellipsis {
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.show {
+    text-wrap: wrap;
+}

@@ -1,0 +1,12 @@
+.counter-box {
+    padding: 1em;
+    border: 1px solid #CCC;
+    width: fit-content;
+    margin-bottom: 1em;
+}
+
+.counter-number {
+    display: inline-block;
+    width:2em;
+    text-align: center
+}
