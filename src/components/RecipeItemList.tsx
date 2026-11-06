@@ -1,7 +1,7 @@
 import { ListGroup } from "react-bootstrap";
 import RecipeItem from "./RecipeItem";
 
-type RecipeItemType = {
+export type RecipeItemType = {
     name: string,
     amount: number
 }
@@ -13,8 +13,8 @@ type Props = {
 export default function RecipeItemList({items}: Props) {
     return (
         <ListGroup>
-            { items.map(item => (
-                <ListGroup.Item>
+            { items.map((item, i) => (
+                <ListGroup.Item key={i}>
                     <RecipeItem name={item.name} amount={item.amount}/>
                 </ListGroup.Item>
             ))}
