@@ -1,5 +1,6 @@
-import { Button, Image, Modal } from "react-bootstrap"
+import { Button, Form, Image, Modal } from "react-bootstrap"
 import RecipeItemList from "./RecipeItemList"
+import { useState } from "react"
 
 type Props = {
     title: string,
@@ -11,18 +12,42 @@ type Props = {
 }
 
 export default function RecipeDialog({title, description, pictureUrl, items, show, hide}: Props) {
+    const [edit, setEdit] = useState(false)
+    const [_title, setTitle] = useState(title)
+    const [_description, setDescription] = useState(description)
     return (
         <Modal show={show}>
-            <Modal.Header>
-                <Modal.Title>{title}</Modal.Title>
+            <Modal.Header >
+                {
+                    edit ? (
+                        <Form.Control value={_title} onChange={e => setTitle(e.target.value)}></Form.Control>
+                    ) : (
+                        <Modal.Title style={{ flexGrow: 1}}>{_title}</Modal.Title>
+                    )
+                }
+                <Button variant={edit ? 'success' : 'primary'} onClick={() => setEdit(e => !e)}>
+                    {
+                        edit ? (
+                            <i className="bi bi-check-lg"></i>
+                        ) : (
+                            <i className="bi bi-pencil-fill"></i>
+                        )
+                    }
+                </Button>
             </Modal.Header>
             <Modal.Body>
                 <Image src={pictureUrl} width='100%'></Image>
-                <p>{description}</p>
+                {
+                    edit ? (
+                        <Form.Control as='textarea' value={_description} rows={5} onChange={e => setDescription(e.target.value)}></Form.Control>
+                    ) : (
+                        <p>{_description}</p>
+                    )
+                }
                 <RecipeItemList items={items}/>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={() => hide()}>Close</Button>
+                <Button onClick={() => {setEdit(false); hide()}}>Close</Button>
             </Modal.Footer>
         </Modal>
     )
