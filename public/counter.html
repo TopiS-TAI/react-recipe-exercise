@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        * {
+            background-color: #333;
+            color: #DDD;
+        }
+        button {
+            border: none;
+            background-color: cornflowerblue;
+            padding: 0.5em;
+            border-radius: 0.25em;
+            color: #EEE;
+            &:hover {
+                background-color: hsl(219, 79%, 80%)
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="counter">
+        <button id="dec">-</button>
+        <span id="value">X</span>
+        <button id="inc">+</button>
+    </div>
+    <script>
+        var valueEl = document.getElementById('value');
+        var decButtonEl = document.getElementById('dec');
+        var incButtonEl = document.getElementById('inc');
+        decButtonEl.addEventListener('click', () => {value--; updateValue()})
+        incButtonEl.addEventListener('click', () => {value++; updateValue()})
+        var value = 0;
+        function updateValue() {
+            valueEl.innerHTML = value;
+        }
+        updateValue()
+    </script>
+</body>
+</html>
